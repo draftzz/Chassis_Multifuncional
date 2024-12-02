@@ -5,14 +5,14 @@ import random
 
 # Dicionário de mapeamento de funções para IDs e nomes dos responsáveis
 responsaveis_por_funcao = {
-    0: {"id": "bruno.moreira@scania.com", "nome": "Bruno Moreira"},
-    1.1: {"id": "bruno.moreira@scania.com", "nome": "Bruno Moreira"},
-    1.2: {"id": "bruno.moreira@scania.com", "nome": "Bruno Moreira"},
-    2: {"id": "bruno.moreira@scania.com", "nome": "Bruno Moreira"},
-    3.1: {"id": "bruno.moreira@scania.com", "nome": "Bruno Moreira"},
-    3.2: {"id": "bruno.moreira@scania.com", "nome": "Bruno Moreira"},
-    4: {"id": "bruno.moreira@scania.com", "nome": "Bruno Moreira"},
-    5: {"id": "bruno.moreira@scania.com", "nome": "Bruno Moreira"}  # Exemplo para a função 5
+    0: {"id": "x", "nome": "Bruno Moreira"},
+    1.1: {"id": "x", "nome": "Bruno Moreira"},
+    1.2: {"id": "x", "nome": "Bruno Moreira"},
+    2: {"id": "x", "nome": "Bruno Moreira"},
+    3.1: {"id": "x", "nome": "Bruno Moreira"},
+    3.2: {"id": "x", "nome": "Bruno Moreira"},
+    4: {"id": "x", "nome": "Bruno Moreira"},
+    5: {"id": "x", "nome": "Bruno Moreira"}  # Exemplo para a função 5
 }
 
 # Função para enviar mensagem ao Teams com a menção ao responsável
@@ -40,7 +40,7 @@ def enviar_mensagem_webhook_com_botoes(webhook_url, funcao, funcao_ajuda_escolhi
                     "body": [
                         {
                             "type": "TextBlock",
-                            "text": f"🚨 Função {funcao} tem mais de um caminhão complexo e precisa de ajuda!",
+                            "text": f"🚨 Função {funcao} tem mais de um caminhão complexo e precisa de ajuda! 🚨",
                             "weight": "Bolder",
                             "size": "Medium"
                         },
@@ -90,11 +90,11 @@ def enviar_mensagem_webhook_com_botoes(webhook_url, funcao, funcao_ajuda_escolhi
     response = requests.post(webhook_url, json=payload, headers=headers)
     
     if response.status_code == 200:
-        print("Mensagem com menção e botões enviada com sucesso ao Teams!")
+        print("Mensagem enviada com sucesso ao Teams!")
     else:
         print(f"Erro ao enviar mensagem: {response.status_code}, {response.text}")
 
-# Função para verificar se o veículo é complexo
+# Condição para verificar se o veículo é complexo
 def eh_complexo(linha, funcao):
     def trata_valor(valor):
         if pd.isna(valor):
@@ -117,7 +117,7 @@ def eh_complexo(linha, funcao):
     elif funcao == 3.1:
         return 'N_MODULE' in modelo
     elif funcao == 3.2:
-        return 'GÁS' in gas
+        return 'N_MODULE' in modelo
     elif funcao == 4:
         return 'GÁS' in gas
     elif funcao == 5:
